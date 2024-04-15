@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Product Detail {% endblock title %}
+{% block main.content %}
+<div class="container my-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="product-container">
+                <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="img-fluid">
+                <div class="product-description">
+                    <h1 class="text-center">{{ product.name }}</h1>
+                    <p class="text-center">Price: Rs {{ product.price }}</p>
+                    <p class="text-justify">{{ product.description }}</p>
+                    <div class="buttons">
+                        <form method="post" action="{% url 'add_to_cart' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <button type="submit" class="btn btn-add-to-cart">Add to Cart</button>
+                        </form>
+                        <a href="{% url 'showcart' %}" class="btn btn-dark p-1 m-1 btn-ig">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main.content %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+    Detect Disease
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1>Detect Disease</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="imageInput" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" id="imageInput" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Detect</button>
+        </form>
+    </div>
+{% endblock content %}

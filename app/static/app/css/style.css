@@ -1,0 +1,99 @@
+.container {
+    padding: 20px;
+}
+
+.list-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.list-group-item {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+}
+
+.list-group-item img {
+    max-height: 200px;
+    width: auto;
+    display: block;
+    margin: 0 auto 10px;
+    transition: transform 0.3s ease;
+}
+
+.caption {
+    text-align: center;
+}
+
+.list-group-item img:hover {
+    transform: scale(1.1);
+    filter: brightness(110%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+}
+
+.product-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product-description {
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.product-container:nth-child(odd) {
+    background-color: #f8d7da;
+}
+
+.product-container:nth-child(even) {
+    background-color: #cce5ff;
+}
+
+.product-container:hover img {
+    transform: scale(1.1);
+    filter: brightness(110%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1, p {
+    margin-top: 20px;
+}
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-to-cart {
+    background-color: red;
+    color: white;
+    margin-right: 10px; /* Add margin between buttons */
+}
+
+.btn-buy-now {
+    background-color: black;
+    color: white;
+}
+
+/* Hover effect */
+.btn:hover {
+    opacity: 0.8;
+}

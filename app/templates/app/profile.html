@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block extra_css %}
+<style>
+    /* Add your CSS styles here */
+    .profile-form {
+        display: none; /* Hide the edit profile form by default */
+    }
+</style>
+{% endblock extra_css %}
+
+{% block main.content %}
+<div class="container profile-container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Welcome, {{ request.user }}</h2>
+            {% if profile %}
+            <div class="profile-info">
+                <!-- Display profile information here -->
+                <p>First Name: {{ profile.name }}</p>
+                <p>Email: {{ profile.email }}</p>
+                <p>Locality: {{ profile.locality }}</p>
+                <p>City: {{ profile.city }}</p>
+                <p>State: {{ profile.get_state_display }}</p>
+                
+                <!-- Add other fields as needed -->
+            </div>
+            <!-- Add button to toggle visibility of edit profile form -->
+            <button id="edit-profile-btn">Edit Profile Details</button>
+            <!-- Add edit profile form -->
+            <div class="profile-form">
+                <h3>Edit Profile Details</h3>
+                <form id="profile-form" method="post">
+                    {% csrf_token %}
+                    {% for fm in form %}
+                    {{ fm.label_tag }}
+                    {{ fm }}
+                    {% endfor %}
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+            {% else %}
+            <!-- If profile does not exist, display add profile form -->
+            <div class="profile-form">
+                <h3>Add Profile Details</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for fm in form %}
+                    {{ fm.label_tag }}
+                    {{ fm }}
+                    {% endfor %}
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+            {% endif %}
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to toggle visibility of edit profile form
+    document.addEventListener('DOMContentLoaded', function() {
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        const profileForm = document.querySelector('.profile-form');
+
+        editProfileBtn.addEventListener('click', function() {
+            profileForm.style.display = profileForm.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+</script>
+{% endblock main.content %}
+
+

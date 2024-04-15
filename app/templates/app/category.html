@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Category {% endblock title %}
+{% block main.content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                {% for product in products %}
+                <div class="list-group-item">
+                    <a href="{% url 'product-detail' product.id %}" class="list-group-item-action">
+                        <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="img-thumbnail">
+                        <div class="caption">
+                            <h5>{{ product.name }}</h5>
+                            <p>Price: Rs.{{ product.price }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main.content %}
+<link rel="stylesheet" href= "static/app/css/style.css"/>

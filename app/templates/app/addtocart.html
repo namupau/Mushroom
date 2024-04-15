@@ -1,0 +1,19 @@
+<!-- addtocart.html -->
+{% extends "base.html" %}
+{% block title %}Your Cart{% endblock title %}
+
+{% block content %}
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        {% if cart_items %}
+            <ul>
+                {% for item in cart_items %}
+                    <li>{{ item.product.name }} - Rs {{ item.product.price }} (Quantity: {{ item.quantity }})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+{% endblock content %}
+
