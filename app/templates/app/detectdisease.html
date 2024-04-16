@@ -1,18 +1,23 @@
 {% extends "base.html" %}
-{% block title %}
-    Detect Disease
-{% endblock title %}
+{% block title %}Detect Disease{% endblock title %}
 
-{% block content %}
-    <div class="container">
-        <h1>Detect Disease</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="imageInput" class="form-label">Upload Image</label>
-                <input class="form-control" type="file" id="imageInput" name="image">
+{% block main.content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            {% if message %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
             </div>
-            <button type="submit" class="btn btn-primary">Detect</button>
-        </form>
+            {% endif %}
+            <h2>Upload suspected unhealthy mushroom image</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">Upload Image</button>
+            </form>
+        </div>
     </div>
-{% endblock content %}
+</div>
+{% endblock main.content %}
+

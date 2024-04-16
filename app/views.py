@@ -9,8 +9,10 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404
 from .models import Cart,Customer, Product
-from .forms import DiseaseDetectionForm
 from .forms import ContactForm, SignupForm, LoginForm, CustomerProfileForm
+from django.core.files.storage import FileSystemStorage
+import os
+from .models import UploadedImage
 
 
 def home(request):
@@ -125,16 +127,19 @@ def show_cart(request):
     return render(request, 'app/addtocart.html', {'cart_items': cart_items})
 
 def detect_disease(request):
-    if request.method == 'POST':
-        form = DiseaseDetectionForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Handle image processing and disease detection here
-            # For example:
-            uploaded_image = form.cleaned_data['image']
-            # Process the image and get the disease detection result
-            # Then display the result to the user
+    if request.method == 'POST' and request.FILES['image']:
+        # Get the uploaded image file
+        uploaded_image = request.FILES['image']
+        
+        # Save the uploaded image to the database
+        uploaded_image_obj = UploadedImage(image=uploaded_image)
+        uploaded_image_obj.save()
+        
+        # Display a success message
+        message = "Image uploaded successfully!"
+        
+        # Redirect back to the same page with the success message
+        return render(request, 'app/detectdisease.html', {'message': message})
     else:
-        form = DiseaseDetectionForm()
-    return render(request, 'app/detectdisease.html', {'form': form})
- 
+        return render(request, 'app/detectdisease.html')
     

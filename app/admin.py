@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Cart,Customer,Product
+from .models import UploadedImage
 
 
 @admin.register(Product)
@@ -16,3 +17,8 @@ class CustomerModelAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class CartModelAdmin(admin.ModelAdmin):
     list_display = ['id','user', 'product', 'quantity', 'total_cost']
+
+
+@admin.register(UploadedImage)
+class UploadedImageAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image', 'uploaded_at']

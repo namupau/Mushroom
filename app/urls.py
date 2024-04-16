@@ -19,7 +19,7 @@ urlpatterns = [
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
     path('cart/', views.show_cart, name='showcart'),
     path('detectdisease/', views.detect_disease, name='detect_disease')
-
+    #path('detection_results/', detection_results, name='detection_results'),
 
   
 ]
